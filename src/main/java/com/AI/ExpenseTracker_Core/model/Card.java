@@ -1,10 +1,7 @@
 package com.AI.ExpenseTracker_Core.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,13 +17,15 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.UUID)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private CardType cardType;
 
     private String lastFourDigit;
     private Double creditLimit;
-
     private Long createdAt;
     private Long updatedAt;
 
+    @ManyToOne( fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
     private Account account;
 }

@@ -1,14 +1,13 @@
 package com.AI.ExpenseTracker_Core.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Entity
 @Data
@@ -21,5 +20,8 @@ public class Bank {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "bank",fetch = FetchType.LAZY)
+    private Set<Account> accountSet;
 }
 

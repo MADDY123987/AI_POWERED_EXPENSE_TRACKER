@@ -1,14 +1,13 @@
 package com.AI.ExpenseTracker_Core.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,7 +21,23 @@ public class Account {
 
     private String lastFourDigit;
     private Double balance;
-    private Long createdAt;
+    private Long createdAt= System.currentTimeMillis();
     private Long updatedAt;
+
+    @ManyToOne(cascade = CascadeType.MERGE,
+            fetch = FetchType.LAZY)
+    @JoinColumn(name = "app_user_id")
+    private AppUser appUser;
+
+    @ManyToOne(cascade = CascadeType.MERGE,
+            fetch = FetchType.LAZY)
+    @JoinColumn(name = "bank_name_id")
+    private Bank bank;
+
+    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
+    private Set<Card> cardSet;
+
+    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
+    private Set<Transaction> transactionSet;
 
 }

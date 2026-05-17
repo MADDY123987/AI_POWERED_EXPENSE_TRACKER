@@ -22,6 +22,17 @@ public class UserConfig {
 
     private Long createdAt;
     private Long updatedAt;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="app_user_id")
     private AppUser appUser;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "default_payment_mode_id")
     private PaymentMode paymentMode;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "default_account_id")
+    private Account defaultaccount;
+
 }

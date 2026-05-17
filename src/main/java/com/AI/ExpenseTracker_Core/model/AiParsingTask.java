@@ -12,16 +12,27 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ai_Parsing_Task {
+public class AiParsingTask {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     private String rawInput;
+    private String content;
     private String errorMessage;
     private String correlationId;
-    private Long createdAt;
+
+    @Builder.Default
+    private Long createdAt=System.currentTimeMillis();
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "app_user_id")
+    private AppUser appUser;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "transaction_id")
+    private Transaction transaction;
 }
