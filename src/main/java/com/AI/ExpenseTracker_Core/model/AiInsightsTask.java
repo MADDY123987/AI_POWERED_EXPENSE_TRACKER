@@ -1,6 +1,8 @@
 package com.AI.ExpenseTracker_Core.model;
 
 
+import com.AI.ExpenseTracker_Core.Enum.InsightType;
+import com.AI.ExpenseTracker_Core.Enum.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

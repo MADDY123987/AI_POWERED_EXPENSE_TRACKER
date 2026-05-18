@@ -1,6 +1,7 @@
 package com.AI.ExpenseTracker_Core.model;
 
 
+import com.AI.ExpenseTracker_Core.Enum.TransactionBehavior;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
